@@ -50,6 +50,22 @@ $effekt.compare = function(obj1, obj2) {
   return compare$prim(obj1, obj2);
 }
 
+$effekt.compareUint8Arrays = function(arr1, arr2) {
+  const len = Math.min(arr1.length, arr2.length);
+
+  for (let i = 0; i < len; i++) {
+    if (arr1[i] !== arr2[i]) {
+      return arr1[i] < arr2[i] ? -1 : 1;
+    }
+  }
+
+  if (arr1.length !== arr2.length) {
+    return arr1.length < arr2.length ? -1 : 1;
+  } else {
+    return 0;
+  }
+}
+
 $effekt.println = function println$impl(str) {
   console.log(str); return $effekt.unit;
 }
